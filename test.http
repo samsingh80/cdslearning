@@ -1,0 +1,62 @@
+GET http://localhost:4004/catalog
+###
+GET http://localhost:4004/catalog/$metadata
+###
+GET http://localhost:4004/catalog/Sales
+###
+POST http://localhost:4004/catalog/Sales(1)/CatalogService.boost
+Content-Type: application/json
+
+{}
+###
+GET http://localhost:4004/catalog/Sales?$apply=filter(amount%20gt%20500)/groupby((region),aggregate($count%20as%20nrCountries))
+###
+GET http://localhost:4004/v2/catalog
+###
+GET http://localhost:4004/v2/catalog/$metadata
+###
+GET http://localhost:4004/v2/catalog/Sales
+###
+POST http://localhost:4004/v2/catalog/Sales_boost?ID=1
+Content-Type: application/json
+
+{
+"ID": 20,
+"region": "Apac",
+"Country": "UK",
+ "org":"AUC1",
+ "amount": 343,
+ "comments" : "Fantastic"
+}
+###
+GET http://localhost:4004/v2/catalog/Sales?$apply=filter(amount%20gt%20500)/groupby((region),aggregate($count%20as%20nrCountries))
+###
+POST http://localhost:4004/v2/catalog/BirthCert
+Content-Type: application/json
+
+{
+
+"request_id": "12",
+"sequence_number": "01",
+"first_name": "Sammy",
+"nationality": "Indian"
+
+}
+
+###
+GET http://localhost:4004/v2/catalog/certview
+
+
+###
+POST http://localhost:4004/v2/catalog/certview
+Content-Type: application/json
+
+{
+
+"request_id": "13",
+"sequence_number": "01",
+"first_name": "Sammy",
+"nationality": "Indian"
+
+}
+
